@@ -194,6 +194,10 @@ async def generate_key_start(update: Update, context: CallbackContext):
         await update.message.reply_text("❌ *Only the owner or resellers can generate keys!*", parse_mode='Markdown')
         return ConversationHandler.END
 
+    if update.effective_chat.type != "private":
+        await update.message.reply_text("❌ *This command can only be used in private chat!*", parse_mode='Markdown')
+        return ConversationHandler.END
+
     await update.message.reply_text("⚠️ *Enter the duration for the key (e.g., 1H for 1 hour or 1D for 1 day).*", parse_mode='Markdown')
     return GET_DURATION
 
@@ -370,6 +374,10 @@ async def show_keys(update: Update, context: CallbackContext):
         await update.message.reply_text("❌ *Only the owner or resellers can view keys!*", parse_mode='Markdown')
         return
 
+    if update.effective_chat.type != "private":
+        await update.message.reply_text("❌ *This command can only be used in private chat!*", parse_mode='Markdown')
+        return
+
     active_keys = []
     for key, key_info in keys.items():
         if key_info['expiration_time'] > time.time():
@@ -436,6 +444,10 @@ async def set_threads_input(update: Update, context: CallbackContext):
 async def delete_key_start(update: Update, context: CallbackContext):
     if not is_owner(update):
         await update.message.reply_text("❌ *Only the owner can delete keys!*", parse_mode='Markdown')
+        return ConversationHandler.END
+
+    if update.effective_chat.type != "private":
+        await update.message.reply_text("❌ *This command can only be used in private chat!*", parse_mode='Markdown')
         return ConversationHandler.END
 
     await update.message.reply_text("⚠️ *Enter the key to delete.*", parse_mode='Markdown')
