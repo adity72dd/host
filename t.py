@@ -161,7 +161,7 @@ async def start(update: Update, context: CallbackContext):
 
     # If the user starts the bot in a private chat, send the main channel link
     if chat.type == "private":
-        main_channel_link = "https://t.me/+xuZ9zqZnfJw5MDg9"  # Replace with your main channel link
+        main_channel_link = "https://t.me/+wnHGZwkgKBo0ZDdl"  # Replace with your main channel link
         await update.message.reply_text(
             f"🌟 *Welcome!* 🌟\n\n"
             f"🔗 *Join our main channel for free 180 sec server hack:* {main_channel_link}\n\n"
@@ -192,10 +192,6 @@ async def start(update: Update, context: CallbackContext):
 async def generate_key_start(update: Update, context: CallbackContext):
     if not (is_owner(update) or is_reseller(update)):
         await update.message.reply_text("❌ *Only the owner or resellers can generate keys!*", parse_mode='Markdown')
-        return ConversationHandler.END
-
-    if update.effective_chat.type != "private":
-        await update.message.reply_text("❌ *This command can only be used in private chat!*", parse_mode='Markdown')
         return ConversationHandler.END
 
     await update.message.reply_text("⚠️ *Enter the duration for the key (e.g., 1H for 1 hour or 1D for 1 day).*", parse_mode='Markdown')
@@ -374,10 +370,6 @@ async def show_keys(update: Update, context: CallbackContext):
         await update.message.reply_text("❌ *Only the owner or resellers can view keys!*", parse_mode='Markdown')
         return
 
-    if update.effective_chat.type != "private":
-        await update.message.reply_text("❌ *This command can only be used in private chat!*", parse_mode='Markdown')
-        return
-
     active_keys = []
     for key, key_info in keys.items():
         if key_info['expiration_time'] > time.time():
@@ -444,10 +436,6 @@ async def set_threads_input(update: Update, context: CallbackContext):
 async def delete_key_start(update: Update, context: CallbackContext):
     if not is_owner(update):
         await update.message.reply_text("❌ *Only the owner can delete keys!*", parse_mode='Markdown')
-        return ConversationHandler.END
-
-    if update.effective_chat.type != "private":
-        await update.message.reply_text("❌ *This command can only be used in private chat!*", parse_mode='Markdown')
         return ConversationHandler.END
 
     await update.message.reply_text("⚠️ *Enter the key to delete.*", parse_mode='Markdown')
