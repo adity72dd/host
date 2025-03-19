@@ -161,7 +161,7 @@ async def start(update: Update, context: CallbackContext):
 
     # If the user starts the bot in a private chat, send the main channel link
     if chat.type == "private":
-        main_channel_link = "https://t.me/+wnHGZwkgKBo0ZDdl"  # Replace with your main channel link
+        main_channel_link = "https://t.me/+xuZ9zqZnfJw5MDg9"  # Replace with your main channel link
         await update.message.reply_text(
             f"🌟 *Welcome!* 🌟\n\n"
             f"🔗 *Join our main channel for free 180 sec server hack:* {main_channel_link}\n\n"
